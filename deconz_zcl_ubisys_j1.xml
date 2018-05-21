@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Source: https://github.com/dresden-elektronik/deconz-rest-plugin/issues/534#issuecomment-381570440
+ -->
+<zcl>
+    <datatypes>
+        <!--Null-->
+        <datatype id="00" name="No data" shortname="ndat" length="0" ad="-"></datatype>
+        <!--General data -->
+        <datatype id="08" name="8-bit data" shortname="dat8" length="1" ad="D"></datatype>
+        <datatype id="09" name="16-bit data" shortname="dat16" length="2" ad="D"></datatype>
+        <datatype id="0a" name="24-bit data" shortname="dat24" length="3" ad="D"></datatype>
+        <datatype id="0b" name="32-bit data" shortname="dat32" length="4" ad="D"></datatype>
+        <datatype id="0c" name="40-bit data" shortname="dat40" length="5" ad="D"></datatype>
+        <datatype id="0d" name="48-bit data" shortname="dat48" length="6" ad="D"></datatype>
+        <datatype id="0e" name="56-bit data" shortname="dat56" length="7" ad="D"></datatype>
+        <datatype id="0f" name="64-bit data" shortname="dat64" length="8" ad="D"></datatype>
+        <!-- Logical -->
+        <datatype id="10" name="Boolean" shortname="bool" length="1" inval="ff" ad="D"></datatype>
+        <!-- Bitmap -->
+        <datatype id="18" name="8-bit bitmap" shortname="bmp8" length="1" ad="D"></datatype>
+        <datatype id="19" name="16-bit bitmap" shortname="bmp16" length="2" ad="D"></datatype>
+        <datatype id="1a" name="24-bit bitmap" shortname="bmp24" length="3" ad="D"></datatype>
+        <datatype id="1b" name="32-bit bitmap" shortname="bmp32" length="4" ad="D"></datatype>
+        <datatype id="1c" name="40-bit bitmap" shortname="bmp40" length="5" ad="D"></datatype>
+        <datatype id="1d" name="48-bit bitmap" shortname="bmp48" length="6" ad="D"></datatype>
+        <datatype id="1e" name="56-bit bitmap" shortname="bmp56" length="7" ad="D"></datatype>
+        <datatype id="1f" name="64-bit bitmap" shortname="bmp64" length="8" ad="D"></datatype>
+        <!-- Unsigned integer -->
+        <datatype id="20" name="Unsigned 8-bit integer" shortname="u8" length="1" inval="ff" ad="A"></datatype>
+        <datatype id="21" name="Unsigned 16-bit integer" shortname="u16" length="2" inval="ffff" ad="A"></datatype>
+        <datatype id="22" name="Unsigned 24-bit integer" shortname="u24" length="3" inval="ffffff" ad="A"></datatype>
+        <datatype id="23" name="Unsigned 32-bit integer" shortname="u32" length="4" inval="ffffffff" ad="A"></datatype>
+        <datatype id="24" name="Unsigned 40-bit integer" shortname="u40" length="5" inval="ffffffffff" ad="A"></datatype>
+        <datatype id="25" name="Unsigned 48-bit integer" shortname="u48" length="6" inval="ffffffffffff" ad="A"></datatype>
+        <datatype id="26" name="Unsigned 56-bit integer" shortname="u56" length="7" inval="ffffffffffffff" ad="A"></datatype>
+        <datatype id="27" name="Unsigned 64-bit integer" shortname="u64" length="8" inval="ffffffffffffffff" ad="A"></datatype>
+        <!-- Signed integer -->
+        <datatype id="28" name="Signed 8-bit integer" shortname="s8" length="1" inval="80" ad="A"></datatype>
+        <datatype id="29" name="Signed 16-bit integer" shortname="s16" length="2" inval="8000" ad="A"></datatype>
+        <datatype id="2a" name="Signed 24-bit integer" shortname="s24" length="3" inval="800000" ad="A"></datatype>
+        <datatype id="2b" name="Signed 32-bit integer" shortname="s32" length="4" inval="80000000" ad="A"></datatype>
+        <datatype id="2c" name="Signed 40-bit integer" shortname="s40" length="5" inval="8000000000" ad="A"></datatype>
+        <datatype id="2d" name="Signed 48-bit integer" shortname="s48" length="6" inval="800000000000" ad="A"></datatype>
+        <datatype id="2e" name="Signed 56-bit integer" shortname="s56" length="7" inval="80000000000000" ad="A"></datatype>
+        <datatype id="2f" name="Signed 64-bit integer" shortname="s64" length="8" inval="8000000000000000" ad="A"></datatype>
+        <!-- Enumeration -->
+        <datatype id="30" name="8-bit enumeration" shortname="enum8" length="1" inval="ff" ad="D"></datatype>
+        <datatype id="31" name="16-bit enumeration" shortname="enum16" length="2" inval="ffff" ad="D"></datatype>
+        <!-- Floating point -->
+        <datatype id="38" name="Semi-precicion" shortname="semi" length="2" inval="nan" ad="A"></datatype>
+        <datatype id="39" name="Single precicion" shortname="float" length="4" inval="nan" ad="A"></datatype>
+        <datatype id="3a" name="Double precicion" shortname="double" length="8" inval="nan" ad="A"></datatype>
+        <!-- String -->
+        <!-- oN, defined in first N octets -->
+        <datatype id="41" name="Octed string" shortname="ostring" length="o1" inval="ff" ad="D"></datatype>
+        <datatype id="42" name="Character string" shortname="cstring" length="o1" inval="ff" ad="D"></datatype>
+        <datatype id="43" name="Long octed string" shortname="lostring" length="o2" inval="ffff" ad="D"></datatype>
+        <datatype id="44" name="Long character string" shortname="lcstring" length="o2" inval="ffff" ad="D"></datatype>
+        <!-- Ordered sequence -->
+        <!-- sloc, sum of length of content -->
+        <datatype id="48" name="Array" shortname="array" length="2+sloc" inval="ffff" ad="D"></datatype>
+        <datatype id="4c" name="Structure" shortname="struct" length="2+sloc" inval="ffff" ad="D"></datatype>
+        <!-- Collection -->
+        <datatype id="50" name="Set" shortname="set" length="sloc" inval="ffff" ad="D"></datatype>
+        <datatype id="51" name="Bag" shortname="bag" length="sloc" inval="ffff" ad="D"></datatype>
+        <!-- Time -->
+        <datatype id="e0" name="Time of day" shortname="time" length="4" inval="ffffffff" ad="A"></datatype>
+        <datatype id="e1" name="Date" shortname="date" length="4" inval="ffffffff" ad="A"></datatype>
+        <datatype id="e2" name="UTCTime" shortname="utc" length="4" inval="ffffffff" ad="A"></datatype>
+        <!-- Identifier -->
+        <datatype id="e8" name="Cluster ID" shortname="cid" length="2" inval="ffff" ad="D"></datatype>
+        <datatype id="e9" name="Attribute ID" shortname="aid" length="2" inval="ffff" ad="D"></datatype>
+        <datatype id="ea" name="BACnet OID" shortname="oid" length="4" inval="ffffffff" ad="D"></datatype>
+        <!-- Miscellaneous -->
+        <datatype id="f0" name="IEEE address" shortname="uid" length="8" inval="ffffffffffffffff" ad="D"></datatype>
+        <datatype id="f1" name="128-bit security key" shortname="seckey" length="16" ad="D"></datatype>
+        <!-- Ubisys -->
+        <datatype id="48" name="Array8" shortname="array8" length="0x48" inval="ffff" ad="D"/>
+    </datatypes>
+    <domain name="General" useZcl="true" description="">
+        <cluster id="0xFC00" name="Device Setup" description="This is a manufacturer-specific cluster used for basic device setup. For example, it can be used to assign physical inputs to endpoints and to control the behaviour of inputs (i.e. permanent switches, push-button switches, normally open vs. normally closed, on/off, level control or scene selection, etc.)">
+            <server>
+                <attribute id="0x0000" name="InputConfigurations" type="array8" access="r" required="m" description="This array of 8-bit data holds exactly one entry per physical device input and allows disabling the input or inverting the “normal” signal level (normally closed vs. normally open).">
+                    <value value="0x0000" type="dat8" name="Configuration options for high-voltage physical input #1" description="Defines the configuration for the physical input marked with a switch symbol and the digit “1” in an upward pointing arrowhead. In case of J1, this is the white wire. Factory default value: 0x00"/>
+                    <value value="0x0001" type="dat8" name="Configuration options for high-voltage physical input #2" description="Defines the configuration for the physical input marked with a switch symbol and the digit “2” in a downward pointing arrowhead. In case of J1, this is the grey wire. Factory default value: 0x00 "/>
+                </attribute>
+                <attribute id="0x0001" name="InputActions" type="array" access="r" required="m" description="This array of raw data strings maps physical inputs to application endpoints on the device (for example, an on/off switch application) and translates level changes to appropriate cluster commands (e.g. on/off/toggle or move/stop).">
+                    <value type="u8" name="InputAndOptions" description="Specifies the level transition to which this particular instruction applies." />
+                    <value type="u8" name="Transition" description="A four-bit input index in the LSBs and four option flags in the MSBs." />
+                    <value type="u8" name="Endpoint" description="Each instruction must be assigned to a suitable source endpoint in the local device. Acceptable endpoint for J1/J1-R: Endpoint #2." />
+                    <value type="u16" name="ClusterID" description="The 16-bit cluster ID that will be used to transmit the ZCL command payload, e.g. 0x0102 for the window covering cluster." />
+                    <value type="dat64" name="CommandTemplate" description="A variable length ZCL command template, which will be sent from the source endpoint specified above, using the cluster ID specified above. This can be a simple move up (0x00), move down (0x01) or stop (0x02) command, or more complex commands. There might be code in the device that modifies the command template according to intrinsic rules or option flag settings. Notice that this is the raw payload and does not include a leading length byte." />
+                </attribute>
+            </server>
+        </cluster>
+        <cluster id="0x0102" name="Controller">
+            <description>Provides up/down/stop and go to lift/tilt position control of the attached blind/screen/window.</description>
+            <server>
+                <attribute-set id="000" description="Window Covering Information">
+                    <attribute id="0x0000" name="WindowCoveringType" type="enum8" access="rw" required="m" description="Specifies the type of device attached to the motor control output wires, for example: roller blind, lift and tilt blind, awning, flap, projector screen etc. This can be used to configure the proper window covering type, according to what is actually connected to J1(-R)’s motor output. Notice that the device may behave differently based on this selection, so it should be configured early in the commissioning process.">
+                        <value value="0" name="Roller Shade, Lift only"/>
+                        <value value="1" name="Roller Shade, Lift only, two motors"/>
+                        <value value="2" name="Roller Shade, Lift only, exterior"/>
+                        <value value="3" name="Roller Shade, Lift only, two motors, exterior"/>
+                        <value value="4" name="Drapery, Lift only"/>
+                        <value value="5" name="Awning, Lift only"/>
+                        <value value="6" name="Shutter, Tilt only"/>
+                        <value value="7" name="Tilt Blind,Tilt only, tilt only"/>
+                    </attribute>
+                    <attribute id="0x0001" name="PhysicalClosedLimitLift" type="u16" access="r" required="m" description="The bound for the fully closed position (lift height), in centimeters."/>
+                    <attribute id="0x0002" name="PhysicalClosedLimitTilt" type="u16" access="r" required="m" description="The bound for the fully closed position (tilt angle), in units of 0.1°."/>
+                    <attribute id="0x0003" name="CurrentPositionLift" type="u16" access="r" required="m" description="The current lift position (height), in centimeters."/>
+                    <attribute id="0x0004" name="CurrentPositionTilt" type="u16" access="r" required="m" description="The current tilt position (angle), in units of 0.1°."/>
+                    <attribute id="0x0005" name="NumberOfActuationsLift" type="u16" access="r" required="m" description="Notice: This attribute is present, but currently not maintained."/>
+                    <attribute id="0x0006" name="NumberOfActuationsTilt" type="u16" access="r" required="m" description="Notice: This attribute is present, but currently not maintained."/>
+                    <attribute id="0x0007" name="ConfigurationAndStatus" type="bmp8" access="rw" required="m" description="Provides information about the status and capabilities of the window covering, e.g. if it supports positioning feedback via timer or encoder, etc. This attribute is currently intended to disable the closed-loop behavior of the controller, in case a relay is connected to the output or the motor uses an electronic shut off at the top/bottom positions with a significant quiescence current level."/>
+                    <attribute id="0x0008" name="CurrentPositionLiftPercentage" type="u8" access="r" required="m" description="The current lift position (height), in percent. Where 0% corresponds to the open position (c.f. InstalledOpenLimitLift attribute), 100% to the closed position (c.f. InstalledClosedLimitLift attribute)."/>
+                    <attribute id="0x0009" name="CurrentPositionTiltPercentage" type="u8" access="r" required="m" description="The current tilt position (angle), in percent. Where 0% corresponds to the open position (c.f. InstalledOpenLimitTilt attribute), 100% to the closed position (c.f. InstalledClosedLimitTilt attribute)."/>
+                    <attribute id="0x000A" name="OperationalStatus" type="bmp8" access="r" required="m" description="This attribute contains two bits which will be set while the motor is active. Thus, devices that do not support positioning or move at a slow pace can still provide feedback."/>
+                    <attribute id="0x0010" name="InstalledOpenLimitLift" type="u16" access="rw" required="m" description="Specifies a bound for the top position (lift height), in centimeters."/>
+                    <attribute id="0x0011" name="InstalledClosedLimitLift" type="u16" access="rw" required="m" description="Specifies a bound for the bottom position (lift height), in centimeters."/>
+                    <attribute id="0x0012" name="InstalledOpenLimitTilt" type="u16" access="rw" required="m" description="Specifies a bound for the open position (tilt angle), in units of 0.1°."/>
+                    <attribute id="0x0013" name="InstalledClosedLimitTilt" type="u16" access="rw" required="m" description="Specifies a bound for the closed position (tilt angle), in units of 0.1°."/>
+                    <attribute id="0x0014" name="Velocity" type="u16" access="r" required="m" description="Notice: This attribute is present, but currently not maintained."/>
+                    <attribute id="0x0015" name="AccelerationTime" type="u16" access="r" required="m" description="Notice: This attribute is present, but currently not maintained. "/>
+                    <attribute id="0x0016" name="DeaccelerationTime" type="u16" access="r" required="m" description="Notice: This attribute is present, but currently not maintained."/>
+                    <attribute id="0x0017" name="Mode" type="bmp8" access="rw" required="m" description="Determines if the motor direction is reversed, the device is in calibration or maintenance mode, and whether it shall provide optical feedback.">
+                        <value value="0x00" name="default mode"/>
+                        <value value="0x02" name="configuration mode"/>
+                    </attribute>
+                    <attribute id="0x1000" name="TurnaroundGuardTime" type="u8" access="rw" required="m" description="When an abrupt change of the direction occurs during motion, this guard time is applied to prevent damage to the motor, blind and any mechanical parts. Specified in units of 50ms. The default value of 10, which translates to 500ms, is applicable for most single-phase, bidirectional motors. Caution: Don’t specify values, which are less than the minimum recommended by the motor manufacturer!"/>
+                    <attribute id="0x1001" name="LiftToTiltTransitionSteps" type="u16" access="rw" required="m" description="Number of steps (measured in number of full AC waves), which a transition from lift to tilt takes for the attached blind. This applies to lift and tilt or tilt only blinds and specifies the time the blade requires for a full turn from fully open to fully closed."/>
+                    <attribute id="0x1002" name="TotalSteps" type="u16" access="rw" required="m" description="Total number of steps (measured in number of full AC waves), which a run from the fully open position to the fully closed position takes. This applies to all kinds of attached devices."/>
+                    <attribute id="0x1003" name="LiftToTiltTransitionSteps2" type="u16" access="rw" required="m" description="Number of steps (measured in number of full AC waves), which a transition from tilt to lift takes for the attached blind. This applies to lift and tilt or tilt only blinds and specifies the time the blade requires for a full turn from fully closed to fully open. Currently, this value should be equal to LiftToTiltTransitionSteps."/>
+                    <attribute id="0x1004" name="TotalSteps2" type="u16" access="rw" required="m" description="Total number of steps (measured in number of full AC waves), which a run from the fully closed position to the fully open position takes. This applies to all kinds of attached devices. This value might be significantly larger than TotalSteps, which presents the same value for the opposite direction."/>
+                    <attribute id="0x1005" name="AdditionalSteps" type="u8" access="rw" required="m" description="Specifies the additional steps (in percent) that the controller will run to make sure it really reaches the top or bottom position. For example, if the calculated height (TotalSteps) is 1,000 steps, the default value of 10% results in 100 additional steps that the controller will run the motor, before it shuts off power to the motor. Notice that the calculated position will be fixed at the bottom (or top) position in that case. "/>
+                    <attribute id="0x1006" name="InactivePowerThreshold" type="u16" access="rw" required="m" description="This attribute provides a means to support motors with electronic shut-off, which draw electrical current even in their “off” state. It defines a threshold on the active power level, which discriminates the “active” (motor running) and “inactive” (motor off) states of the attached motor. You can disable this feature by writing a value of 0xFFFF. The value is specified in milliwatts, with a default setting of 0x1000 (approximately 4.1W), which should work out-of-the-box for most installations."/>
+                    <attribute id="0x1007" name="StartupSteps" type="u16" access="rw" required="m" description="Specifies the number of steps (measured in number of full AC waves) that the motor requires to exceed the “inactive threshold”. This is primarily meant for motors with electronic shut-off and allows the motor to start, i.e. it is not being “inactive” during this time. The default value of 0x0020, or 32 full AC wave steps, should work out-of-thebox for most electronic motors on the market."/>
+                </attribute-set>
+                <command id="0x00" dir="recv" name="Move up/open" required="m">
+                    <description>Move upwards, towards the fully open position</description>
+                </command>
+                <command id="0x01" dir="recv" name="Move down/close" required="m">
+                    <description>Move downwards, towards the fully closed position</description>
+                </command>
+                <command id="0x02" dir="recv" name="Stop" required="m">
+                    <description>Stop all motion</description>
+                </command>
+                <command id="0x04" dir="recv" name="Go to Lift Value" required="m">
+                    <description>Moves to the specified lift value</description>
+                    <payload>
+                        <attribute id="0x0000" type="u16" name="Lift Value" required="m" default="0x0000"></attribute>
+                    </payload>
+                </command>
+                <command id="0x05" dir="recv" name="Go to Lift Percentage" required="m">
+                    <description>Moves to the specified lift percentage.</description>
+                    <payload>
+                        <attribute id="0x0000" type="u8" name="Lift Percentage" required="m" default="0x00" range="0x00,0x64"></attribute>
+                    </payload>
+                </command>
+                <command id="0x07" dir="recv" name="Go to Tilt Value" required="m">
+                    <description>Moveto the specified tilt value.</description>
+                    <payload>
+                        <attribute id="0x0000" type="u16" name="Tilt Value" required="m" default="0x0000"></attribute>
+                    </payload>
+                </command>
+                <command id="0x08" dir="recv" name="Go to Tilt Percentage" required="m">
+                    <description>Move to the specified tilt percentage.</description>
+                    <payload>
+                        <attribute id="0x0000" type="u8" name="Tilt Percentage" required="m" default="0x00" range="0x00,0x64"></attribute>
+                    </payload>
+                </command>
+            </server>
+            <client>
+                <command id="0x00" dir="recv" name="Move up/open" required="m">
+                    <description>Move upwards, towards the fully open position</description>
+                </command>
+                <command id="0x01" dir="recv" name="Move down/close" required="m">
+                    <description>Move downwards, towards the fully closed position</description>
+                </command>
+                <command id="0x02" dir="recv" name="Stop" required="m">
+                    <description>Stop all motion</description>
+                </command>
+            </client>
+        </cluster>
+    </domain>
+    <profile id="0104" name="Home Automation" description="" version="1.0" rev="25" icon="ha.png">
+        <domain-ref name="General" low_bound="0000" />
+        <device id="0x0202" name="Ubisys J1 Shutter Device" description=""></device>
+    </profile>
+    <devices>
+        <device id="0x0202" name="Ubisys J1 Shutter Control" description=""></device>
+    </devices>
+</zcl>

@@ -1,0 +1,37 @@
+{
+  "name": "deCONZ GUI VNC",
+  "version": "2.05.25",
+  "slug": "deconz_gui_vnc",
+  "description": "deCONZ with GUI through a VNC server",
+  "arch": ["armhf"],
+  "startup": "initialize",
+  "boot": "auto",
+  "webui": "http://[HOST]:[PORT:8080]",
+  "host_network": true,
+  "auto_uart": true,
+  "map": ["config:rw", "ssl:rw", "addons:rw", "share:rw", "backup:rw"],
+  "options": {
+      "web_port": 8080,
+      "websockets_port": 8443,
+      "debug_info": 1,
+      "debug_aps": 0,
+      "debug_zcl": 0,
+      "debug_zdp": 0,
+      "debug_otau": 0,
+      "vnc_port": 5920,
+      "vnc_password": "delight",
+      "vnc_screen": "1280x720x16"
+  },
+  "schema": {
+      "web_port": "port",
+      "websockets_port": "port",
+      "debug_info": "int(0,2)",
+      "debug_aps": "int(0,1)",
+      "debug_zcl": "int(0,1)",
+      "debug_zdp": "int(0,1)",
+      "debug_otau": "int(0,1)",
+      "vnc_port": "port",
+      "vnc_password": "str",
+      "vnc_screen": "str"
+  }
+}
