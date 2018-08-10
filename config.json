@@ -1,6 +1,6 @@
 {
   "name": "deCONZ GUI VNC",
-  "version": "2.05.28",
+  "version": "2.05.34",
   "slug": "deconz_gui_vnc",
   "description": "deCONZ with GUI through a VNC server",
   "arch": ["armhf"],
