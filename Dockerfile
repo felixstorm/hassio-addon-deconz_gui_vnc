@@ -72,6 +72,21 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Install deCONZ development package for deconz-cli-plugin
+ADD http://www.dresden-elektronik.de/rpi/deconz-dev/deconz-dev-${DECONZ_VERSION}.deb /deconz-dev.deb
+RUN apt update && \
+    apt install -y build-essential git qt5-default libqt5serialport5-dev libqt5websockets5-dev libsqlite3-dev netcat && \
+    dpkg -i /deconz-dev.deb && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -f /deconz-dev.deb
+# Install deconz-cli-plugin
+RUN git clone https://github.com/ma-ca/deconz-cli-plugin.git && \
+    cd deconz-cli-plugin && \
+    qmake && make && \
+    cp libdeconz_cli_plugin.so /usr/share/deCONZ/plugins && \
+    cd ..
+
 # Add Hass.io-specific start script
 COPY run-with-vnc.sh /
 RUN chmod +x /run-with-vnc.sh
