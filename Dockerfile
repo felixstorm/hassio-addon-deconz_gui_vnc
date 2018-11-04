@@ -70,7 +70,7 @@ RUN apt-get update && apt-get install -y \
         xvfb \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install deCONZ development package for deconz-cli-plugin
+# Install deCONZ development package for deconz-cli-plugin & deconz-rest-plugin
 ADD http://www.dresden-elektronik.de/rpi/deconz-dev/deconz-dev-${DECONZ_VERSION}.deb /deconz-dev.deb
 RUN apt update && apt install -y \
         build-essential \
@@ -80,6 +80,7 @@ RUN apt update && apt install -y \
         libsqlite3-dev \
         netcat \
         qt5-default \
+        qt5-qmake \
     && dpkg -i /deconz-dev.deb && \
     apt clean && rm -rf /var/lib/apt/lists/* && rm -f /deconz-dev.deb
 # Install deconz-cli-plugin
@@ -89,6 +90,13 @@ RUN git clone https://github.com/ma-ca/deconz-cli-plugin.git && \
     cp libdeconz_cli_plugin.so /usr/share/deCONZ/plugins && \
     cd .. && \
     rm -rf deconz-cli-plugin
+# Install deconz-rest-plugin
+RUN git clone https://github.com/felixstorm/deconz-rest-plugin.git && \
+    cd deconz-rest-plugin && \
+    qmake && make -j2 && \
+    cp ../libde_rest_plugin.so /usr/share/deCONZ/plugins && \
+    cd .. && \
+    rm -rf deconz-rest-plugin
 
 # Add Hass.io-specific start script
 COPY run-with-vnc.sh /
