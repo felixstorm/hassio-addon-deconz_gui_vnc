@@ -65,27 +65,30 @@ EXPOSE ${DECONZ_WEB_PORT} ${DECONZ_WS_PORT}
 ###
 
 # Install vnc, xvfb in order to create a 'fake' display
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt-get update && apt-get install -y \
         x11vnc \
-        xvfb && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+        xvfb \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install deCONZ development package for deconz-cli-plugin
 ADD http://www.dresden-elektronik.de/rpi/deconz-dev/deconz-dev-${DECONZ_VERSION}.deb /deconz-dev.deb
-RUN apt update && \
-    apt install -y build-essential git qt5-default libqt5serialport5-dev libqt5websockets5-dev libsqlite3-dev netcat && \
-    dpkg -i /deconz-dev.deb && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -f /deconz-dev.deb
+RUN apt update && apt install -y \
+        build-essential \
+        git \
+        libqt5serialport5-dev \
+        libqt5websockets5-dev \
+        libsqlite3-dev \
+        netcat \
+        qt5-default \
+    && dpkg -i /deconz-dev.deb && \
+    apt clean && rm -rf /var/lib/apt/lists/* && rm -f /deconz-dev.deb
 # Install deconz-cli-plugin
 RUN git clone https://github.com/ma-ca/deconz-cli-plugin.git && \
     cd deconz-cli-plugin && \
-    qmake && make && \
+    qmake && make -j2 && \
     cp libdeconz_cli_plugin.so /usr/share/deCONZ/plugins && \
-    cd ..
+    cd .. && \
+    rm -rf deconz-cli-plugin
 
 # Add Hass.io-specific start script
 COPY run-with-vnc.sh /
