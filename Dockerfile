@@ -55,7 +55,8 @@ RUN dpkg -i /deconz.deb && \
     mkdir /root/otau && \
     chown root:root /usr/bin/deCONZ*
 
-VOLUME [ "/root/.local/share/dresden-elektronik/deCONZ" ]
+# Removed here as we redirect it later to /config/deCONZ
+# VOLUME [ "/root/.local/share/dresden-elektronik/deCONZ" ]
 
 EXPOSE ${DECONZ_WEB_PORT} ${DECONZ_WS_PORT}
 
@@ -92,12 +93,18 @@ COPY deconz_zcl_ubisys_j1.xml /usr/share/deCONZ/zcl
 COPY run-with-vnc.sh /
 RUN chmod +x /run-with-vnc.sh
 
-# Create directory for persistent Hass.io config data
-# Workaround to persist ZigBee network data: change root's home dir to /data
-RUN mkdir /data && \
-    sed -i 's/\/root/\/data/' /etc/passwd && \
-    chown root:root /usr/bin/deCONZ*
-VOLUME [ "/data" ]
+# We do not change root's home dir but create a symbolic link to have deCONZ data in a subfolder of HA's config
+RUN mkdir -p /root/.local/share/dresden-elektronik && \
+    ln -s /config/deCONZ /root/.local/share/dresden-elektronik
+# Need to use root /config here to prevent docker from mounting /config/deCONZ as a separate volume!
+VOLUME [ "/config" ]
+
+# # Create directory for persistent Hass.io config data
+# # Workaround to persist ZigBee network data: change root's home dir to /data
+# RUN mkdir /data && \
+#     sed -i 's/\/root/\/data/' /etc/passwd && \
+#     chown root:root /usr/bin/deCONZ*
+# VOLUME [ "/data" ]
 
 # Hass.io-specific labels
 LABEL io.hass.version="${DECONZ_VERSION}" \ 
