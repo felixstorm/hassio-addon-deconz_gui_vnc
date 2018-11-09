@@ -60,8 +60,8 @@ VOLUME [ "/root/.local/share/dresden-elektronik/deCONZ" ]
 EXPOSE ${DECONZ_WEB_PORT} ${DECONZ_WS_PORT}
 
 
-### Copied from https://github.com/felixstorm/hassio-addon-deconz_gui_vnc/blob/master/Dockerfile
-### and added VNC, deconz-cli-plugin etc.
+### Based on https://github.com/marthoc/docker-deconz/blob/master/armhf-hassio-addon/Dockerfile
+### added VNC, custom deconz-rest-plugin and deconz-cli-plugin etc.
 ###
 
 # Install vnc, xvfb in order to create a 'fake' display
@@ -85,12 +85,12 @@ RUN wget https://github.com/felixstorm/deconz-cli-plugin/raw/master/dest-armhf/l
         netcat \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Copy ZCL Definitions for ubisys J1
+COPY deconz_zcl_ubisys_j1.xml /usr/share/deCONZ/zcl
+
 # Add Hass.io-specific start script
 COPY run-with-vnc.sh /
 RUN chmod +x /run-with-vnc.sh
-
-# Copy ZCL Definitions for ubisys J1
-COPY deconz_zcl_ubisys_j1.xml /usr/share/deCONZ/zcl
 
 # Create directory for persistent Hass.io config data
 # Workaround to persist ZigBee network data: change root's home dir to /data
